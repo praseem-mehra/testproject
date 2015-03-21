@@ -102,12 +102,12 @@ public class HomeActivity extends Activity {
 
         mSubmit = (Button) findViewById(R.id.auth_button);
         slideButton = (Button) findViewById(R.id.handle);
-        uploadButton = (Button) findViewById(R.id.upload_button);
+        uploadButton = (Button) findViewById(R.id.upload_now_button);
         myUploads = (Button) findViewById(R.id.my_uploads_button);
         openButton=(Button)findViewById(R.id.open_button);
-        mPhoto = (Button) findViewById(R.id.photo_button);
+        mPhoto = (Button) findViewById(R.id.take_photo_button);
         appHeader = (TextView) findViewById(R.id.app_header_text_view);
-        recordButton=(Button)findViewById(R.id.sound_button);
+        recordButton=(Button)findViewById(R.id.record_sound_button);
         tv = (TextView) findViewById(R.id.tv);
         addEffects = (TextView) findViewById(R.id.add_effects);
         logoutButton = (TextView) findViewById(R.id.logout_button_text_view);

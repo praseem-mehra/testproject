@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -27,8 +28,8 @@
             android:id="@+id/logout_button_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logout"
-            android:textColor="#aaaaaa"
+            android:text="@string/logout"
+            android:textColor="@color/text_color"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="10dp"
@@ -43,7 +44,7 @@
         android:layout_width="fill_parent"
         android:layout_height="2dp"
         android:layout_below="@+id/container"
-        android:background="#dddddd"></View>
+        android:background="@color/border_color"></View>
 
     <Button
         android:id="@+id/auth_button"
@@ -53,14 +54,14 @@
         android:layout_margin="10dp"
         android:background="@drawable/dropbox_signin_button"
         android:padding="20dp"
-        android:text="Signin With Dropbox"
+        android:text="@string/signin"
         android:textColor="@color/white"
         android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/filter_preview_iv"
         android:layout_width="fill_parent"
-        android:layout_height="240dp"
+        android:layout_height="@dimen/imageviewsize"
         android:layout_below="@+id/container"
         android:layout_marginTop="10dp"
         android:src="@drawable/default_avatar"
@@ -76,43 +77,41 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/photo_button"
+            android:id="@+id/take_photo_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/filter_preview_iv"
             android:layout_margin="10dp"
             android:background="@drawable/controls_primary_button"
             android:padding="10dp"
-
-            android:text="Click a picture"
+            android:text="@string/click"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:visibility="visible" />
 
         <Button
-            android:id="@+id/sound_button"
+            android:id="@+id/record_sound_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/filter_preview_iv"
             android:layout_margin="10dp"
-            android:layout_toRightOf="@+id/photo_button"
+            android:layout_toRightOf="@+id/take_photo_button"
             android:background="@drawable/controls_primary_button"
             android:padding="10dp"
-
-            android:text="Record a sound"
+            android:text="@string/record"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:visibility="visible" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/upload_button"
+        android:id="@+id/upload_now_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/add_effects"
         android:layout_marginLeft="20dp"
         android:background="@drawable/upload_button"
-        android:text="Upload to dropbox"
+        android:text="@string/upload"
         android:textColor="@color/dropbox_blue"
         android:textSize="18sp"
         android:visibility="gone" />

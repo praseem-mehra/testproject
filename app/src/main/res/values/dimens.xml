@@ -8,4 +8,5 @@
     <dimen name="coloumn_width">90dp</dimen>
     <dimen name="horizontal_spaccing">10dp</dimen>
     <dimen name="vertical_spacing">0dp</dimen>
+    <dimen name="imageviewsize">240dp</dimen>
 </resources>
