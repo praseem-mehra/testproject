@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/app_header_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app"
+            android:textColor="@color/orange_basecolor"
+            android:textSize="24sp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:padding="6dp"/>
+
+        <TextView
+            android:id="@+id/logout_button_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textColor="#aaaaaa"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:padding="0dp"
+            android:singleLine="true"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/seperator"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/container"
+        android:background="#dddddd"></View>
+
+    <Button
+        android:id="@+id/auth_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seperator"
+        android:layout_margin="10dp"
+        android:background="@drawable/dropbox_signin_button"
+        android:padding="20dp"
+        android:text="Signin With Dropbox"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/filter_preview_iv"
+        android:layout_width="fill_parent"
+        android:layout_height="240dp"
+        android:layout_below="@+id/container"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/default_avatar"
+        android:visibility="invisible" />
+
+
+    <LinearLayout
+        android:id="@+id/controls_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filter_preview_iv"
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/photo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/filter_preview_iv"
+            android:layout_margin="10dp"
+            android:background="@drawable/controls_primary_button"
+            android:padding="10dp"
+
+            android:text="Click a picture"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/sound_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/filter_preview_iv"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@+id/photo_button"
+            android:background="@drawable/controls_primary_button"
+            android:padding="10dp"
+
+            android:text="Record a sound"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/upload_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_effects"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/upload_button"
+        android:text="Upload to dropbox"
+        android:textColor="@color/dropbox_blue"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/controls_container"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="20dp"
+        android:text="add location"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/tv"
+        android:checked="false"
+
+
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/add_effects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tv"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+
+        android:padding="10dp"
+        android:text="add effects"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/sound_controller_container"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/controls_container"
+        android:orientation="vertical"
+        android:paddingRight="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/start_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/upload_button"
+            android:padding="10dp"
+            android:text="start"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/stop_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/upload_button"
+            android:paddingRight="10dp"
+            android:text="stop"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/play_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp"
+            android:text="play"
+            android:textColor="@color/dropbox_blue"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/mImage"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@color/dropbox_blue"
+        android:visibility="invisible" />
+
+
+    <SlidingDrawer
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:content="@+id/content"
+        android:handle="@+id/handle"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/handle"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:background="#ffbb66"
+            android:text="My Uploads"
+
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/open_button"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="@color/orange_basecolor"
+                android:text="@string/my_uploads"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="italic" />
+
+            <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/grid_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:columnWidth="@dimen/coloumn_width"
+                android:horizontalSpacing="@dimen/horizontal_spaccing"
+                android:numColumns="2"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="@dimen/vertical_spacing">
+
+            </GridView>
+
+        </LinearLayout>
+    </SlidingDrawer>
+
+    <Button
+        android:id="@+id/my_uploads_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/orange_basecolor"
+        android:padding="@dimen/padding"
+        android:text="@string/my_uploads"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+</RelativeLayout>

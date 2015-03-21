@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MobiquityTest</string>
+    <string name="title_activity_add_effects">AddEffectsActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_image_preview">ImagePreviewActivity</string>
+    <string name="app">DropBox Application</string>
+    <string name="my_uploads">MY Uploads</string>
+   
+
+</resources>
