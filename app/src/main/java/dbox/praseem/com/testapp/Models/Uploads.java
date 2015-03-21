@@ -1,10 +1,7 @@
 package dbox.praseem.com.testapp.Models;
-
 import android.graphics.drawable.Drawable;
 
-/**
- * Created by admin on 3/19/2015.
- */
+
 public class Uploads {
     Drawable uploadDrawable;
     String latlon;

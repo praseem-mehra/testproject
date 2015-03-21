@@ -9,4 +9,8 @@
     <dimen name="horizontal_spaccing">10dp</dimen>
     <dimen name="vertical_spacing">0dp</dimen>
     <dimen name="imageviewsize">240dp</dimen>
+
+    <dimen name="effect_preview_size">320dp</dimen>
+    <dimen name="button_size">72dp</dimen>
+
 </resources>

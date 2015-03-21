@@ -59,7 +59,7 @@
         android:textSize="16sp" />
 
     <ImageView
-        android:id="@+id/filter_preview_iv"
+        android:id="@+id/filter_preview_image_view"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/imageviewsize"
         android:layout_below="@+id/container"
@@ -72,7 +72,7 @@
         android:id="@+id/controls_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/filter_preview_iv"
+        android:layout_below="@+id/filter_preview_image_view"
         android:layout_centerHorizontal="true"
         android:gravity="center">
 
@@ -80,7 +80,7 @@
             android:id="@+id/take_photo_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/filter_preview_iv"
+            android:layout_below="@+id/filter_preview_image_view"
             android:layout_margin="10dp"
             android:background="@drawable/controls_primary_button"
             android:padding="10dp"
@@ -93,7 +93,7 @@
             android:id="@+id/record_sound_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/filter_preview_iv"
+            android:layout_below="@+id/filter_preview_image_view"
             android:layout_margin="10dp"
             android:layout_toRightOf="@+id/take_photo_button"
             android:background="@drawable/controls_primary_button"

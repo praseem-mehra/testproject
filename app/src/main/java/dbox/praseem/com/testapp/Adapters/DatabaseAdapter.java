@@ -9,14 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by shanks on 3/9/2015.
  */
-public class VivzDatabaseAdapter {
+public class DatabaseAdapter {
 
     VivzHelper vivzHelper;
     Context context;
     String meaning = "";
 
 
-    public VivzDatabaseAdapter(Context context) {
+    public DatabaseAdapter(Context context) {
         vivzHelper = new VivzHelper(context);
     }
 

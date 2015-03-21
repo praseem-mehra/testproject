@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import dbox.praseem.com.testapp.R;
 import dbox.praseem.com.testapp.Models.Uploads;
+import dbox.praseem.com.testapp.R;
 
 
 public class UploadsAdapter extends BaseAdapter {
@@ -20,7 +20,7 @@ public class UploadsAdapter extends BaseAdapter {
     Context context;
     ViewHolder viewHolder;
     List<Uploads> uploads;
-    Bitmap operation=null;
+    Bitmap operation = null;
 
     public UploadsAdapter(Context context, List<Uploads> uploads) {
         this.context = context;
@@ -54,22 +54,21 @@ public class UploadsAdapter extends BaseAdapter {
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
         viewHolder.uploadImage.setImageDrawable(uploads.getUploadDrawable());
         viewHolder.latlon.setText(uploads.getLatlon());
-//        viewHolder.uploadImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Drawable myDrawable = uploads.getUploadDrawable();
-//                Bitmap bitmap = ((BitmapDrawable) myDrawable).getBitmap();
-//
+        viewHolder.uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                Drawable drawable = uploads.getUploadDrawable();
+//                Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//
 //                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 //                byte[] byteArray = stream.toByteArray();
 //                Intent i = new Intent(context, ImagePreviewActivity.class);
 //                i.putExtra("image", byteArray);
+//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                context.startActivity(i);
-//            }
-//        });
+            }
+        });
 
 
         return view;

@@ -15,11 +15,11 @@ import java.io.ByteArrayOutputStream;
 
 
 public class AddEffectsActivity extends Activity {
-    Bitmap bmp;
-    ImageView img;
-    BitmapDrawable abmp;
-    Button grayEffectButton, darkEffectButton, brightEffectButton,doneButton;
-    private Bitmap operation;
+    private Bitmap bmp;
+    private ImageView img;
+    private BitmapDrawable bitmapDrawable;
+    private Button grayEffectButton, darkEffectButton, brightEffectButton, doneButton;
+    private Bitmap editedBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +27,15 @@ public class AddEffectsActivity extends Activity {
         setContentView(R.layout.activity_add_effects);
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        img = (ImageView) findViewById(R.id.filter_preview_iv);
+        img = (ImageView) findViewById(R.id.filter_preview_image_view);
         darkEffectButton = (Button) findViewById(R.id.dark_effect_button);
         brightEffectButton = (Button) findViewById(R.id.bright_effect_button);
         grayEffectButton = (Button) findViewById(R.id.gray_effect_button);
-        doneButton=(Button)findViewById(R.id.done_button);
+        doneButton = (Button) findViewById(R.id.done_button);
+
         img.setImageBitmap(bmp);
-        abmp = (BitmapDrawable) img.getDrawable();
-        bmp = abmp.getBitmap();
+        bitmapDrawable = (BitmapDrawable) img.getDrawable();
+        bmp = bitmapDrawable.getBitmap();
 
         darkEffectButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -58,7 +59,7 @@ public class AddEffectsActivity extends Activity {
             @Override
             public void onClick(View view) {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                operation.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                editedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 Intent i = new Intent(AddEffectsActivity.this, HomeActivity.class);
                 i.putExtra("image", byteArray);
@@ -69,7 +70,7 @@ public class AddEffectsActivity extends Activity {
     }
 
     public void gray(View view) {
-        operation = Bitmap.createBitmap(bmp.getWidth(),
+        editedBitmap = Bitmap.createBitmap(bmp.getWidth(),
                 bmp.getHeight(), bmp.getConfig());
 
         double red = 0.33;
@@ -87,14 +88,14 @@ public class AddEffectsActivity extends Activity {
                 g = (int) green * g;
                 b = (int) blue * b;
 
-                operation.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
+                editedBitmap.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
             }
         }
-        img.setImageBitmap(operation);
+        img.setImageBitmap(editedBitmap);
     }
 
     public void bright(View view) {
-        operation = Bitmap.createBitmap(bmp.getWidth(),
+        editedBitmap = Bitmap.createBitmap(bmp.getWidth(),
                 bmp.getHeight(), bmp.getConfig());
 
 
@@ -111,14 +112,14 @@ public class AddEffectsActivity extends Activity {
                 b = 100 + b;
                 alpha = 100 + alpha;
 
-                operation.setPixel(i, j, Color.argb(alpha, r, g, b));
+                editedBitmap.setPixel(i, j, Color.argb(alpha, r, g, b));
             }
         }
-        img.setImageBitmap(operation);
+        img.setImageBitmap(editedBitmap);
     }
 
     public void dark(View view) {
-        operation = Bitmap.createBitmap(bmp.getWidth(),
+        editedBitmap = Bitmap.createBitmap(bmp.getWidth(),
                 bmp.getHeight(), bmp.getConfig());
 
 
@@ -134,13 +135,13 @@ public class AddEffectsActivity extends Activity {
                 g = g - 50;
                 b = b - 50;
                 alpha = alpha - 50;
-                operation.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
+                editedBitmap.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
 
 
             }
         }
 
-        img.setImageBitmap(operation);
+        img.setImageBitmap(editedBitmap);
     }
 
 }

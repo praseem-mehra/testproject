@@ -16,6 +16,9 @@
     <string name="click">Click A Picture</string>
     <string name="record">Record A Sound</string>
     <string name="upload">Upload to dropbox</string>
-
+    <string name="done">Done</string>
+    <string name="gray_effect">gray effect</string>
+    <string name="black_effect">black effect</string>
+    <string name="brigth_effect">bright effect</string>
 
 </resources>

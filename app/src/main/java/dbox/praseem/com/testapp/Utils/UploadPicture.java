@@ -1,29 +1,3 @@
-/*
- * Copyright (c) 2011 Dropbox, Inc.
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
- */
-
-
 package dbox.praseem.com.testapp.Utils;
 
 import android.app.ProgressDialog;
@@ -48,55 +22,45 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-/**
- * Here we show uploading a file in a background thread, trying to show
- * typical exception handling and flow of control for an app that uploads a
- * file from Dropbox.
- */
+
 public class UploadPicture extends AsyncTask<Void, Long, Boolean> {
 
-    private final ProgressDialog mDialog;
+    private final ProgressDialog dialog;
     private DropboxAPI<?> mApi;
-    private String mPath;
-    private File mFile;
-    private long mFileLen;
-    private UploadRequest mRequest;
-    private Context mContext;
-    private String mErrorMsg;
+    private String path;
+    private File file;
+    private long fileLength;
+    private UploadRequest request;
+    private Context context;
+    private String errorMessage;
 
 
     public UploadPicture(Context context, DropboxAPI<?> api, String dropboxPath,
                          File file) {
-        // We set the context this way so we don't accidentally leak activities
-        mContext = context.getApplicationContext();
-
-        mFileLen = file.length();
+        this.context = context.getApplicationContext();
+        fileLength = file.length();
         mApi = api;
-        mPath = dropboxPath;
-        mFile = file;
-
-        mDialog = new ProgressDialog(context);
-        mDialog.setMax(100);
-        mDialog.setMessage("Uploading " + file.getName());
-        mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        mDialog.setProgress(0);
-        mDialog.setButton(ProgressDialog.BUTTON_POSITIVE, "Cancel", new OnClickListener() {
+        path = dropboxPath;
+        this.file = file;
+        dialog = new ProgressDialog(context);
+        dialog.setMax(100);
+        dialog.setMessage("Uploading " + file.getName());
+        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        dialog.setProgress(0);
+        dialog.setButton(ProgressDialog.BUTTON_POSITIVE, "Cancel", new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                // This will cancel the putFile operation
-                mRequest.abort();
+                request.abort();
             }
         });
-        mDialog.show();
+        dialog.show();
     }
 
     @Override
     protected Boolean doInBackground(Void... params) {
         try {
-            // By creating a request, we get a handle to the putFile operation,
-            // so we can cancel it later if we want to
-            FileInputStream fis = new FileInputStream(mFile);
-            String path = mPath + mFile.getName();
-            mRequest = mApi.putFileOverwriteRequest(path, fis, mFile.length(),
+            FileInputStream fis = new FileInputStream(file);
+            String path = this.path + file.getName();
+            request = mApi.putFileOverwriteRequest(path, fis, file.length(),
                     new ProgressListener() {
                         @Override
                         public long progressInterval() {
@@ -110,20 +74,17 @@ public class UploadPicture extends AsyncTask<Void, Long, Boolean> {
                         }
                     });
 
-            if (mRequest != null) {
-                mRequest.upload();
+            if (request != null) {
+                request.upload();
                 return true;
             }
 
         } catch (DropboxUnlinkedException e) {
-            // This session wasn't authenticated properly or user unlinked
-            mErrorMsg = "This app wasn't authenticated properly.";
+            errorMessage = "This app wasn't authenticated properly.";
         } catch (DropboxFileSizeException e) {
-            // File size too big to upload via the API
-            mErrorMsg = "This file is too big to upload";
+            errorMessage = "This file is too big to upload";
         } catch (DropboxPartialFileException e) {
-            // We canceled the operation
-            mErrorMsg = "Upload canceled";
+            errorMessage = "Upload canceled";
         } catch (DropboxServerException e) {
             // Server-side exception.  These are examples of what could happen,
             // but we don't do anything special with them here.
@@ -136,24 +97,18 @@ public class UploadPicture extends AsyncTask<Void, Long, Boolean> {
                 // path not found (or if it was the thumbnail, can't be
                 // thumbnailed)
             } else if (e.error == DropboxServerException._507_INSUFFICIENT_STORAGE) {
-                // user is over quota
             } else {
-                // Something else
             }
-            // This gets the Dropbox error, translated into the user's language
-            mErrorMsg = e.body.userError;
-            if (mErrorMsg == null) {
-                mErrorMsg = e.body.error;
+            errorMessage = e.body.userError;
+            if (errorMessage == null) {
+                errorMessage = e.body.error;
             }
         } catch (DropboxIOException e) {
-            // Happens all the time, probably want to retry automatically.
-            mErrorMsg = "Network error.  Try again.";
+            errorMessage = "Network error.  Try again.";
         } catch (DropboxParseException e) {
-            // Probably due to Dropbox server restarting, should retry
-            mErrorMsg = "Dropbox error.  Try again.";
+            errorMessage = "Dropbox error.  Try again.";
         } catch (DropboxException e) {
-            // Unknown error
-            mErrorMsg = "Unknown error.  Try again.";
+            errorMessage = "Unknown error.  Try again.";
         } catch (FileNotFoundException e) {
         }
         return false;
@@ -161,22 +116,22 @@ public class UploadPicture extends AsyncTask<Void, Long, Boolean> {
 
     @Override
     protected void onProgressUpdate(Long... progress) {
-        int percent = (int) (100.0 * (double) progress[0] / mFileLen + 0.5);
-        mDialog.setProgress(percent);
+        int percent = (int) (100.0 * (double) progress[0] / fileLength + 0.5);
+        dialog.setProgress(percent);
     }
 
     @Override
     protected void onPostExecute(Boolean result) {
-        mDialog.dismiss();
+        dialog.dismiss();
         if (result) {
             showToast("Image successfully uploaded");
         } else {
-            showToast(mErrorMsg);
+            showToast(errorMessage);
         }
     }
 
     private void showToast(String msg) {
-        Toast error = Toast.makeText(mContext, msg, Toast.LENGTH_LONG);
+        Toast error = Toast.makeText(context, msg, Toast.LENGTH_LONG);
         error.show();
     }
 }
